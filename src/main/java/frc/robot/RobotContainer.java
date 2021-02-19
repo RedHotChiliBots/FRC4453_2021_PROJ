@@ -213,7 +213,7 @@ public class RobotContainer {
 		// new JoystickButton(m_driver, Button.kX.value).whenPressed(new
 		// ShooterAimStop(shooter));
 
-		new JoystickButton(m_operator, Button.kX.value).whenPressed(new CollectorArmInit(collector));
+		//new JoystickButton(m_operator, Button.kX.value).whenPressed(new CollectorArmInit(collector));
 		new JoystickButton(m_driver, Button.kBumperRight.value).whenPressed(new CollectorExtend(collector));
 		new JoystickButton(m_driver, Button.kBumperLeft.value).whenPressed(new CollectorRetract(collector));
 
@@ -249,7 +249,9 @@ public class RobotContainer {
 		//new JoystickButton(m_operator, Button.kB.value).whenPressed(new HopperReverse(hopper));
 		// new JoystickButton(m_operator, Button.kB.value).whenPressed(new AutonDriveBarrelRace(chassis));
 		new JoystickButton(m_operator, Button.kY.value).whenPressed(new AutonDriveBouncePath(chassis));
+		new JoystickButton(m_operator, Button.kX.value).whenPressed(new AutonDriveTrajectory(chassis.barrelRace1, chassis));
 		new JoystickButton(m_operator, Button.kB.value).whenPressed(new AutonDriveTrajectory(chassis.startNotAtZero, chassis));
+		new JoystickButton(m_operator, Button.kA.value).whenPressed(new AutonDriveTrajectory(chassis.slalom, chassis));
 		// new JoystickButton(m_operator, Button.kB.value).whenPressed(new
 		// HopperShoot(hopper, shooter));
 
@@ -273,7 +275,7 @@ public class RobotContainer {
 		new JoystickButton(m_operator, Button.kBumperRight.value).whenPressed(new ShooterAngleInit(shooter));
 		new JoystickButton(m_operator, Button.kBumperLeft.value).whenPressed(new ShooterTiltInit(shooter));
 
-		new JoystickButton(m_operator, Button.kA.value).whenPressed(new ShooterShoot(shooter));
+		// new JoystickButton(m_operator, Button.kA.value).whenPressed(new ShooterShoot(shooter));
 
 		new JoystickButton(m_operator, Button.kStart.value).whenPressed(new
 		 ShooterStop(shooter));

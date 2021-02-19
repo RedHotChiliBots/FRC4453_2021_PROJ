@@ -103,10 +103,10 @@ public class Chassis extends SubsystemBase {
 	public Trajectory trenchPickUpTrajectory;
 	public Trajectory trenchToRendezvousTrajectory;
 	public Trajectory barrelRace1;
-	public Trajectory barrelRace2;
-	public Trajectory barrelRace3;
-	public Trajectory barrelRace4;
-	public Trajectory barrelRace5;
+	// public Trajectory barrelRace2;
+	// public Trajectory barrelRace3;
+	// public Trajectory barrelRace4;
+	// public Trajectory barrelRace5;
 	public Trajectory out;
 	public Trajectory back;
 	public Trajectory bouncePath1;
@@ -114,6 +114,7 @@ public class Chassis extends SubsystemBase {
 	public Trajectory bouncePath3;
 	public Trajectory bouncePath4;
 	public Trajectory startNotAtZero;
+	public Trajectory slalom;
 
 	// ==============================================================
 	// Initialize NavX AHRS board
@@ -337,65 +338,93 @@ public class Chassis extends SubsystemBase {
 				new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(0.0), new Rotation2d(0)),
 				// Pass through these two interior waypoints, making an 's' curve path
 				// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-				List.of(new Translation2d(Units.inchesToMeters(70.0), Units.inchesToMeters(15.0)),
-				new Translation2d(Units.inchesToMeters(90.0), Units.inchesToMeters(0.0)), 
-				new Translation2d(Units.inchesToMeters(20.0), Units.inchesToMeters(110))),
+				List.of(new Translation2d(Units.inchesToMeters(45.0), Units.inchesToMeters(3.0)),
+				new Translation2d(Units.inchesToMeters(118.0), Units.inchesToMeters(4.0)), 
+				new Translation2d(Units.inchesToMeters(139.0), Units.inchesToMeters(-38.5)),
+				new Translation2d(Units.inchesToMeters(103.0), Units.inchesToMeters(-62.0)),
+				new Translation2d(Units.inchesToMeters(73.0), Units.inchesToMeters(-40.0)),
+				new Translation2d(Units.inchesToMeters(84.0), Units.inchesToMeters(-2.0)),
+				new Translation2d(Units.inchesToMeters(98.0), Units.inchesToMeters(1.5)),
+				new Translation2d(Units.inchesToMeters(200.5), Units.inchesToMeters(0.0)),
+				new Translation2d(Units.inchesToMeters(211.0), Units.inchesToMeters(4.0)),
+				new Translation2d(Units.inchesToMeters(223.5), Units.inchesToMeters(24.0)),
+				new Translation2d(Units.inchesToMeters(222.0), Units.inchesToMeters(42.0)),
+				new Translation2d(Units.inchesToMeters(200.5), Units.inchesToMeters(58.0)),
+				new Translation2d(Units.inchesToMeters(173.0), Units.inchesToMeters(48.5)),
+				new Translation2d(Units.inchesToMeters(167.0), Units.inchesToMeters(25.0)),
+				new Translation2d(Units.inchesToMeters(178.0), Units.inchesToMeters(7.0)),
+				new Translation2d(Units.inchesToMeters(195.0), Units.inchesToMeters(-7.0)),
+				new Translation2d(Units.inchesToMeters(206.0), Units.inchesToMeters(-24.0)),
+				new Translation2d(Units.inchesToMeters(221.0), Units.inchesToMeters(-41.0)),
+				new Translation2d(Units.inchesToMeters(242.0), Units.inchesToMeters(-55.0)),
+				new Translation2d(Units.inchesToMeters(267.0), Units.inchesToMeters(-54.0)),
+				new Translation2d(Units.inchesToMeters(279.0), Units.inchesToMeters(-16.0)),
+				new Translation2d(Units.inchesToMeters(258.0), Units.inchesToMeters(-4.0)),
+				new Translation2d(Units.inchesToMeters(235.0), Units.inchesToMeters(-6.0)),
+				new Translation2d(Units.inchesToMeters(206.0), Units.inchesToMeters(-7.0)),
+				new Translation2d(Units.inchesToMeters(176.0), Units.inchesToMeters(4.0)),
+				new Translation2d(Units.inchesToMeters(149.0), Units.inchesToMeters(14.0)),
+				new Translation2d(Units.inchesToMeters(96.0), Units.inchesToMeters(18.0)),
+				new Translation2d(Units.inchesToMeters(53.0), Units.inchesToMeters(10.0))
+				),
 				// End 3 meters straight ahead of where we started, facing forward
-				new Pose2d(Units.inchesToMeters(40.0), Units.inchesToMeters(90.0), new Rotation2d(0)),
+				new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(0.0), new Rotation2d(180)),
 				// Pass config
 				config);
 
-		barrelRace2 = TrajectoryGenerator.generateTrajectory(
-			// Start at the origin facing the +X direction
-			new Pose2d(Units.inchesToMeters(40.0), Units.inchesToMeters(90.0), new Rotation2d(0)),
-			// Pass through these two interior waypoints, making an 's' curve path
-			// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-			List.of(new Translation2d(Units.inchesToMeters(20), Units.inchesToMeters(70)), new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(90))),
-			// End 3 meters straight ahead of where we started, facing forward
-			new Pose2d(Units.inchesToMeters(20.0), Units.inchesToMeters(180.0), new Rotation2d(0)),
-			// Pass config
-			config);
+		// barrelRace2 = TrajectoryGenerator.generateTrajectory(
+		// 	// Start at the origin facing the +X direction
+		// 	new Pose2d(Units.inchesToMeters(40.0), Units.inchesToMeters(90.0), new Rotation2d(0)),
+		// 	// Pass through these two interior waypoints, making an 's' curve path
+		// 	// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+		// 	List.of(new Translation2d(Units.inchesToMeters(20), Units.inchesToMeters(70)), new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(90))),
+		// 	// End 3 meters straight ahead of where we started, facing forward
+		// 	new Pose2d(Units.inchesToMeters(20.0), Units.inchesToMeters(180.0), new Rotation2d(0)),
+		// 	// Pass config
+		// 	config);
 
-		barrelRace3 = TrajectoryGenerator.generateTrajectory(
-			// Start at the origin facing the +X direction
-			new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(90.0), new Rotation2d(0)),
-			// Pass through these two interior waypoints, making an 's' curve path
-			// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-			List.of(new Translation2d(Units.inchesToMeters(-20), Units.inchesToMeters(180)), new Translation2d(Units.inchesToMeters(-40), Units.inchesToMeters(200))),
-			// End 3 meters straight ahead of where we started, facing forward
-			new Pose2d(Units.inchesToMeters(-60.0), Units.inchesToMeters(180.0), new Rotation2d(0)),
-			// Pass config
-			config);
+		// barrelRace3 = TrajectoryGenerator.generateTrajectory(
+		// 	// Start at the origin facing the +X direction
+		// 	new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(90.0), new Rotation2d(0)),
+		// 	// Pass through these two interior waypoints, making an 's' curve path
+		// 	// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+		// 	List.of(new Translation2d(Units.inchesToMeters(-20), Units.inchesToMeters(180)), new Translation2d(Units.inchesToMeters(-40), Units.inchesToMeters(200))),
+		// 	// End 3 meters straight ahead of where we started, facing forward
+		// 	new Pose2d(Units.inchesToMeters(-60.0), Units.inchesToMeters(180.0), new Rotation2d(0)),
+		// 	// Pass config
+		// 	config);
 
 					
-		barrelRace4 = TrajectoryGenerator.generateTrajectory(
-			// Start at the origin facing the +X direction
-			new Pose2d(Units.inchesToMeters(-60.0), Units.inchesToMeters(180.0), new Rotation2d(0)),
-			// Pass through these two interior waypoints, making an 's' curve path
-			// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-			List.of(new Translation2d(Units.inchesToMeters(-40), Units.inchesToMeters(160)), new Translation2d(Units.inchesToMeters(20), Units.inchesToMeters(220))),
-			// End 3 meters straight ahead of where we started, facing forward
-			new Pose2d(Units.inchesToMeters(40.0), Units.inchesToMeters(240.0), new Rotation2d(0)),
-			// Pass config
-			config);
+		// barrelRace4 = TrajectoryGenerator.generateTrajectory(
+		// 	// Start at the origin facing the +X direction
+		// 	new Pose2d(Units.inchesToMeters(-60.0), Units.inchesToMeters(180.0), new Rotation2d(0)),
+		// 	// Pass through these two interior waypoints, making an 's' curve path
+		// 	// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+		// 	List.of(new Translation2d(Units.inchesToMeters(-40), Units.inchesToMeters(160)), new Translation2d(Units.inchesToMeters(20), Units.inchesToMeters(220))),
+		// 	// End 3 meters straight ahead of where we started, facing forward
+		// 	new Pose2d(Units.inchesToMeters(40.0), Units.inchesToMeters(240.0), new Rotation2d(0)),
+		// 	// Pass config
+		// 	config);
 
-		barrelRace5 = TrajectoryGenerator.generateTrajectory(
-			// Start at the origin facing the +X direction
-			new Pose2d(Units.inchesToMeters(40.0), Units.inchesToMeters(2400.0), new Rotation2d(0)),
-			// Pass through these two interior waypoints, making an 's' curve path
-			// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-			List.of(new Translation2d(Units.inchesToMeters(20), Units.inchesToMeters(260)), new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(240))),
-			// End 3 meters straight ahead of where we started, facing forward
-			new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(0.0), new Rotation2d(0)),
-			// Pass config
-			config);
+		// barrelRace5 = TrajectoryGenerator.generateTrajectory(
+		// 	// Start at the origin facing the +X direction
+		// 	new Pose2d(Units.inchesToMeters(40.0), Units.inchesToMeters(2400.0), new Rotation2d(0)),
+		// 	// Pass through these two interior waypoints, making an 's' curve path
+		// 	// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+		// 	List.of(new Translation2d(Units.inchesToMeters(20), Units.inchesToMeters(260)), new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(240))),
+		// 	// End 3 meters straight ahead of where we started, facing forward
+		// 	new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(0.0), new Rotation2d(0)),
+		// 	// Pass config
+		// 	config);
 		
 		bouncePath1 = TrajectoryGenerator.generateTrajectory(
 			// Start at the origin facing the +X direction
 			new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(0.0), new Rotation2d(0)),
 			// Pass through these two interior waypoints, making an 's' curve path
 			// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-			List.of(new Translation2d(Units.inchesToMeters(39.0), Units.inchesToMeters(13.5))),
+			List.of(new Translation2d(Units.inchesToMeters(21.0), Units.inchesToMeters(5.0)), 
+			new Translation2d(Units.inchesToMeters(34.0), Units.inchesToMeters(15.0)), 
+			new Translation2d(Units.inchesToMeters(41.0), Units.inchesToMeters(25.0))),
 			// End 3 meters straight ahead of where we started, facing forward
 			new Pose2d(Units.inchesToMeters(47.5), Units.inchesToMeters(42.5), new Rotation2d(90)),
 			// Pass config
@@ -403,50 +432,84 @@ public class Chassis extends SubsystemBase {
 
 		bouncePath2 = TrajectoryGenerator.generateTrajectory(
 			// Start at the origin facing the +X direction
-			new Pose2d(Units.inchesToMeters(30.0), Units.inchesToMeters(43.25), new Rotation2d(90)),
+			new Pose2d(Units.inchesToMeters(47.5), Units.inchesToMeters(42.5), new Rotation2d(90)),
 			// Pass through these two interior waypoints, making an 's' curve path
 			// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-			List.of(new Translation2d(Units.inchesToMeters(36.0), Units.inchesToMeters(0.0)),
-			new Translation2d(Units.inchesToMeters(66.0), Units.inchesToMeters(-41.75)), 
-			new Translation2d(Units.inchesToMeters(80.0), Units.inchesToMeters(-53.0)),
-			new Translation2d(Units.inchesToMeters(105.0), Units.inchesToMeters(-62.0)), 
-			new Translation2d(Units.inchesToMeters(109.5), Units.inchesToMeters(-53.0)),
-			new Translation2d(Units.inchesToMeters(114.0), Units.inchesToMeters(-41.75)),
-			new Translation2d(Units.inchesToMeters(114.0), Units.inchesToMeters(0.0))),
+			List.of(new Translation2d(Units.inchesToMeters(50.0), Units.inchesToMeters(28.0)),
+			new Translation2d(Units.inchesToMeters(58.0), Units.inchesToMeters(10.0)), 
+			new Translation2d(Units.inchesToMeters(56.0), Units.inchesToMeters(-5.5)),
+			new Translation2d(Units.inchesToMeters(74.0), Units.inchesToMeters(-25.0)), 
+			new Translation2d(Units.inchesToMeters(82.0), Units.inchesToMeters(-39.0)),
+			new Translation2d(Units.inchesToMeters(94.0), Units.inchesToMeters(-49.5)),
+			new Translation2d(Units.inchesToMeters(119.0), Units.inchesToMeters(-49.5)),
+			new Translation2d(Units.inchesToMeters(128.0), Units.inchesToMeters(-39.0)),
+			new Translation2d(Units.inchesToMeters(137.5), Units.inchesToMeters(-14.0))),
 			// End 3 meters straight ahead of where we started, facing forward
-			new Pose2d(Units.inchesToMeters(114.0), Units.inchesToMeters(43.25), new Rotation2d(-90)),
+			new Pose2d(Units.inchesToMeters(137.5), Units.inchesToMeters(42.5), new Rotation2d(-90)),
 			// Pass config
 			configReversed);
 			
 		bouncePath3 = TrajectoryGenerator.generateTrajectory(
 			// Start at the origin facing the +X direction
-			new Pose2d(Units.inchesToMeters(114.0), Units.inchesToMeters(43.25), new Rotation2d(-90)),
+			new Pose2d(Units.inchesToMeters(135.5), Units.inchesToMeters(42.5), new Rotation2d(-90)),
 			// Pass through these two interior waypoints, making an 's' curve path
 			// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-			List.of(new Translation2d(Units.inchesToMeters(114.0), Units.inchesToMeters(0.0)),
-			new Translation2d(Units.inchesToMeters(114.0), Units.inchesToMeters(-41.75)),
-			new Translation2d(Units.inchesToMeters(126.0), Units.inchesToMeters(53.0)),
-			new Translation2d(Units.inchesToMeters(138.0), Units.inchesToMeters(-62.0)), 
-			new Translation2d(Units.inchesToMeters(174.0), Units.inchesToMeters(-62.0)),
-			new Translation2d(Units.inchesToMeters(186.0), Units.inchesToMeters(53.0)), 
-			new Translation2d(Units.inchesToMeters(198.0), Units.inchesToMeters(-41.75)),
-			new Translation2d(Units.inchesToMeters(198.0), Units.inchesToMeters(0.0)),
-			new Translation2d(Units.inchesToMeters(198.0), Units.inchesToMeters(0.0))),
+			List.of(new Translation2d(Units.inchesToMeters(135.5), Units.inchesToMeters(-14.0)),
+			new Translation2d(Units.inchesToMeters(140.0), Units.inchesToMeters(-34.0)),
+			new Translation2d(Units.inchesToMeters(154.0), Units.inchesToMeters(-52.0)),
+			new Translation2d(Units.inchesToMeters(179.0), Units.inchesToMeters(-60.0)), 
+			new Translation2d(Units.inchesToMeters(211.0), Units.inchesToMeters(-47.5)),
+			new Translation2d(Units.inchesToMeters(223.0), Units.inchesToMeters(-24.5)), 
+			new Translation2d(Units.inchesToMeters(227.5), Units.inchesToMeters(-8.0))),
 			// End 3 meters straight ahead of where we started, facing forward
-			new Pose2d(Units.inchesToMeters(216.0), Units.inchesToMeters(0.0), new Rotation2d(90)),
+			new Pose2d(Units.inchesToMeters(227.5), Units.inchesToMeters(42.5), new Rotation2d(90)),
 			// Pass config
 			config);
 
 		bouncePath4 = TrajectoryGenerator.generateTrajectory(
 			// Start at the origin facing the +X direction
-			new Pose2d(Units.inchesToMeters(198.0), Units.inchesToMeters(43.25), new Rotation2d(90)),
+			new Pose2d(Units.inchesToMeters(224.0), Units.inchesToMeters(42.5), new Rotation2d(90)),
 			// Pass through these two interior waypoints, making an 's' curve path
 			// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-			List.of(),
+			List.of(new Translation2d(Units.inchesToMeters(229.0), Units.inchesToMeters(27.5)), 
+			new Translation2d(Units.inchesToMeters(240.0), Units.inchesToMeters(12.0))
+			),
 			// End 3 meters straight ahead of where we started, facing forward
-			new Pose2d(Units.inchesToMeters(234.0), Units.inchesToMeters(0.0), new Rotation2d(0)),
+			new Pose2d(Units.inchesToMeters(275.0), Units.inchesToMeters(0.0), new Rotation2d(180)),
 			// Pass config
-			config);
+			configReversed);
+	
+
+			slalom = TrajectoryGenerator.generateTrajectory(
+				// Start at the origin facing the +X direction
+				new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(0.0), new Rotation2d(0)),
+				// Pass through these two interior waypoints, making an 's' curve path
+				// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+				List.of(new Translation2d(Units.inchesToMeters(18.5), Units.inchesToMeters(0.0)),
+				new Translation2d(Units.inchesToMeters(39.5), Units.inchesToMeters(9.0)), 
+				new Translation2d(Units.inchesToMeters(47.5), Units.inchesToMeters(36.0)),
+				new Translation2d(Units.inchesToMeters(57.0), Units.inchesToMeters(60.0)), 
+				new Translation2d(Units.inchesToMeters(76.5), Units.inchesToMeters(68.0)),
+				new Translation2d(Units.inchesToMeters(206.5), Units.inchesToMeters(68.0)),
+				new Translation2d(Units.inchesToMeters(223.5), Units.inchesToMeters(56.5)),
+				new Translation2d(Units.inchesToMeters(228.5), Units.inchesToMeters(26.0)),
+				new Translation2d(Units.inchesToMeters(255.0), Units.inchesToMeters(6.0)),
+				new Translation2d(Units.inchesToMeters(279.5), Units.inchesToMeters(15.0)),
+				new Translation2d(Units.inchesToMeters(288.5), Units.inchesToMeters(39.0)),
+				new Translation2d(Units.inchesToMeters(271.5), Units.inchesToMeters(63.0)),
+				new Translation2d(Units.inchesToMeters(244.5), Units.inchesToMeters(64.0)),
+				new Translation2d(Units.inchesToMeters(228.5), Units.inchesToMeters(50.0)),
+				new Translation2d(Units.inchesToMeters(225.5), Units.inchesToMeters(32.0)),
+				new Translation2d(Units.inchesToMeters(223.5), Units.inchesToMeters(19.0)),
+				new Translation2d(Units.inchesToMeters(193.5), Units.inchesToMeters(3.0)),
+				new Translation2d(Units.inchesToMeters(72.5), Units.inchesToMeters(3.0)),
+				new Translation2d(Units.inchesToMeters(57.0), Units.inchesToMeters(12.0)),
+				new Translation2d(Units.inchesToMeters(41.5), Units.inchesToMeters(60.0)),
+				new Translation2d(Units.inchesToMeters(23.5), Units.inchesToMeters(67.0))),
+				// End 3 meters straight ahead of where we started, facing forward
+				new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(67.0), new Rotation2d(180)),
+				// Pass config
+				configReversed);
 		// m_leftPIDController.setP(ChassisConstants.kP);
 		// m_leftPIDController.setI(ChassisConstants.kI);
 		// m_leftPIDController.setD(ChassisConstants.kD);

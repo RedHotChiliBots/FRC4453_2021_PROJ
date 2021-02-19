@@ -15,10 +15,11 @@ public class AutonDriveBarrelRace extends SequentialCommandGroup {
   public AutonDriveBarrelRace(Chassis chassis) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new AutonDriveTrajectory(chassis.barrelRace1, chassis), 
-    new AutonDriveTrajectory(chassis.barrelRace2, chassis), 
-    new AutonDriveTrajectory(chassis.barrelRace3, chassis), 
-    new AutonDriveTrajectory(chassis.barrelRace4, chassis),
-    new AutonDriveTrajectory(chassis.barrelRace5, chassis));
+    addCommands(new AutonDriveTrajectory(chassis.barrelRace1, chassis) 
+    // new AutonDriveTrajectory(chassis.barrelRace2, chassis), 
+    // new AutonDriveTrajectory(chassis.barrelRace3, chassis), 
+    // new AutonDriveTrajectory(chassis.barrelRace4, chassis),
+    // new AutonDriveTrajectory(chassis.barrelRace5, chassis)
+    );
   }
 }

@@ -19,9 +19,9 @@ public class AutonDriveBouncePath extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(new ResetFieldPosition(this.chassis),
-    new AutonDriveTrajectory(chassis.bouncePath1, this.chassis)
-    /*new AutonDriveTrajectory(chassis.bouncePath2, this.chassis),
+    new AutonDriveTrajectory(chassis.bouncePath1, this.chassis),
+    new AutonDriveTrajectory(chassis.bouncePath2, this.chassis),
     new AutonDriveTrajectory(chassis.bouncePath3, this.chassis),
-    new AutonDriveTrajectory(chassis.bouncePath4, this.chassis)*/);
+    new AutonDriveTrajectory(chassis.bouncePath4, this.chassis));
   }
 }
