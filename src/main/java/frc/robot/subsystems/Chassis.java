@@ -321,13 +321,13 @@ public class Chassis extends SubsystemBase {
 
 		out = TrajectoryGenerator.generateTrajectory(
 				new Pose2d(0.0, 0.0, new Rotation2d(0)),
-				List.of(),
-				new Pose2d(9.14, 0.0, new Rotation2d(0)),
+				List.of(new Translation2d(2.0, 1.0), new Translation2d(4.0, -1.0)),
+				new Pose2d(6.0, 0.0, new Rotation2d(0)),
 				// Pass config
 				config);
 		
 		back = TrajectoryGenerator.generateTrajectory(
-				new Pose2d(9.14, 0.0, new Rotation2d(0)), 
+				new Pose2d(2.0, 0.0, new Rotation2d(0)), 
 				List.of(), 
 				new Pose2d(0.0, 0.0, new Rotation2d(0)), 
 				configReversed);
@@ -371,51 +371,6 @@ public class Chassis extends SubsystemBase {
 				new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(0.0), new Rotation2d(180)),
 				// Pass config
 				config);
-
-		// barrelRace2 = TrajectoryGenerator.generateTrajectory(
-		// 	// Start at the origin facing the +X direction
-		// 	new Pose2d(Units.inchesToMeters(40.0), Units.inchesToMeters(90.0), new Rotation2d(0)),
-		// 	// Pass through these two interior waypoints, making an 's' curve path
-		// 	// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-		// 	List.of(new Translation2d(Units.inchesToMeters(20), Units.inchesToMeters(70)), new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(90))),
-		// 	// End 3 meters straight ahead of where we started, facing forward
-		// 	new Pose2d(Units.inchesToMeters(20.0), Units.inchesToMeters(180.0), new Rotation2d(0)),
-		// 	// Pass config
-		// 	config);
-
-		// barrelRace3 = TrajectoryGenerator.generateTrajectory(
-		// 	// Start at the origin facing the +X direction
-		// 	new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(90.0), new Rotation2d(0)),
-		// 	// Pass through these two interior waypoints, making an 's' curve path
-		// 	// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-		// 	List.of(new Translation2d(Units.inchesToMeters(-20), Units.inchesToMeters(180)), new Translation2d(Units.inchesToMeters(-40), Units.inchesToMeters(200))),
-		// 	// End 3 meters straight ahead of where we started, facing forward
-		// 	new Pose2d(Units.inchesToMeters(-60.0), Units.inchesToMeters(180.0), new Rotation2d(0)),
-		// 	// Pass config
-		// 	config);
-
-					
-		// barrelRace4 = TrajectoryGenerator.generateTrajectory(
-		// 	// Start at the origin facing the +X direction
-		// 	new Pose2d(Units.inchesToMeters(-60.0), Units.inchesToMeters(180.0), new Rotation2d(0)),
-		// 	// Pass through these two interior waypoints, making an 's' curve path
-		// 	// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-		// 	List.of(new Translation2d(Units.inchesToMeters(-40), Units.inchesToMeters(160)), new Translation2d(Units.inchesToMeters(20), Units.inchesToMeters(220))),
-		// 	// End 3 meters straight ahead of where we started, facing forward
-		// 	new Pose2d(Units.inchesToMeters(40.0), Units.inchesToMeters(240.0), new Rotation2d(0)),
-		// 	// Pass config
-		// 	config);
-
-		// barrelRace5 = TrajectoryGenerator.generateTrajectory(
-		// 	// Start at the origin facing the +X direction
-		// 	new Pose2d(Units.inchesToMeters(40.0), Units.inchesToMeters(2400.0), new Rotation2d(0)),
-		// 	// Pass through these two interior waypoints, making an 's' curve path
-		// 	// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
-		// 	List.of(new Translation2d(Units.inchesToMeters(20), Units.inchesToMeters(260)), new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(240))),
-		// 	// End 3 meters straight ahead of where we started, facing forward
-		// 	new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(0.0), new Rotation2d(0)),
-		// 	// Pass config
-		// 	config);
 		
 		bouncePath1 = TrajectoryGenerator.generateTrajectory(
 			// Start at the origin facing the +X direction
@@ -614,6 +569,10 @@ public class Chassis extends SubsystemBase {
 		sbX.setDouble(x);
 		sbY.setDouble(y);
 		sbDeg.setDouble(deg);
+
+		// System.out.println("Pose X " + x);
+		// System.out.println("Pose Y "+ y);
+		// System.out.println("Pose Angle " + deg);
 
 		// m_odometry.getPoseMeters();
 		// new Pose2d(x, y, rotation);

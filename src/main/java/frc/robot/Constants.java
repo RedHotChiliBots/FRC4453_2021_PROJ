@@ -89,7 +89,7 @@ public final class Constants {
 	}
 
 	public static final class ChassisConstants {
-		public static final double kMaxSpeedMPS = Units.feetToMeters(0.5); // meters per second
+		public static final double kMaxSpeedMPS = Units.feetToMeters(1.0); // meters per second
 		public static final double kMinSpeedMPS = -kMaxSpeedMPS; // meters per second
 		public static final double kMaxAngularSpeed = 2 * Math.PI; // one rotation per second
 
@@ -101,8 +101,8 @@ public final class Constants {
 		public static final double kVelFactor = kWheelCirc / kGearBoxRatio / 60.0; // Meters per Second
 
 		// Constants for Drive PIDs
-		public static final double kP = 0.2;
-		public static final double kI = 0.0;
+		public static final double kP = 0.75;
+		public static final double kI = 0.0005;
 		public static final double kD = 0.0;
 
 		// Ramsete Command constants - same for all robots - do not change
