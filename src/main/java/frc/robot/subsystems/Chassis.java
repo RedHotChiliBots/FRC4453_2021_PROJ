@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -16,6 +18,8 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -36,6 +40,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -115,6 +120,12 @@ public class Chassis extends SubsystemBase {
 	public Trajectory bouncePath4;
 	public Trajectory startNotAtZero;
 	public Trajectory slalom;
+	public Trajectory bouncePathPathWeaver;
+	public Trajectory bouncePathPathWeaver1;
+	public Trajectory bouncePathPathWeaver2;
+	public Trajectory bouncePathPathWeaver3;
+	public Trajectory bouncePathPathWeaver4;
+
 
 	// ==============================================================
 	// Initialize NavX AHRS board
@@ -339,34 +350,38 @@ public class Chassis extends SubsystemBase {
 				// Pass through these two interior waypoints, making an 's' curve path
 				// List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
 				List.of(new Translation2d(Units.inchesToMeters(45.0), Units.inchesToMeters(3.0)),
-				new Translation2d(Units.inchesToMeters(118.0), Units.inchesToMeters(4.0)), 
+				new Translation2d(Units.inchesToMeters(90.0), Units.inchesToMeters(11.5)), 
+				new Translation2d(Units.inchesToMeters(131.0), Units.inchesToMeters(-7.0)),
 				new Translation2d(Units.inchesToMeters(139.0), Units.inchesToMeters(-38.5)),
 				new Translation2d(Units.inchesToMeters(103.0), Units.inchesToMeters(-62.0)),
-				new Translation2d(Units.inchesToMeters(73.0), Units.inchesToMeters(-40.0)),
-				new Translation2d(Units.inchesToMeters(84.0), Units.inchesToMeters(-2.0)),
-				new Translation2d(Units.inchesToMeters(98.0), Units.inchesToMeters(1.5)),
+				new Translation2d(Units.inchesToMeters(80.0), Units.inchesToMeters(-51.5)),
+				new Translation2d(Units.inchesToMeters(72.0), Units.inchesToMeters(-32.0)),
+				new Translation2d(Units.inchesToMeters(75.5), Units.inchesToMeters(-10.0)),
+				new Translation2d(Units.inchesToMeters(103.0), Units.inchesToMeters(5.0)),
+				new Translation2d(Units.inchesToMeters(135.0), Units.inchesToMeters(4.0)),
+				new Translation2d(Units.inchesToMeters(171.0), Units.inchesToMeters(0.0)),
 				new Translation2d(Units.inchesToMeters(200.5), Units.inchesToMeters(0.0)),
-				new Translation2d(Units.inchesToMeters(211.0), Units.inchesToMeters(4.0)),
-				new Translation2d(Units.inchesToMeters(223.5), Units.inchesToMeters(24.0)),
-				new Translation2d(Units.inchesToMeters(222.0), Units.inchesToMeters(42.0)),
-				new Translation2d(Units.inchesToMeters(200.5), Units.inchesToMeters(58.0)),
-				new Translation2d(Units.inchesToMeters(173.0), Units.inchesToMeters(48.5)),
-				new Translation2d(Units.inchesToMeters(167.0), Units.inchesToMeters(25.0)),
-				new Translation2d(Units.inchesToMeters(178.0), Units.inchesToMeters(7.0)),
-				new Translation2d(Units.inchesToMeters(195.0), Units.inchesToMeters(-7.0)),
-				new Translation2d(Units.inchesToMeters(206.0), Units.inchesToMeters(-24.0)),
-				new Translation2d(Units.inchesToMeters(221.0), Units.inchesToMeters(-41.0)),
-				new Translation2d(Units.inchesToMeters(242.0), Units.inchesToMeters(-55.0)),
-				new Translation2d(Units.inchesToMeters(267.0), Units.inchesToMeters(-54.0)),
-				new Translation2d(Units.inchesToMeters(279.0), Units.inchesToMeters(-16.0)),
-				new Translation2d(Units.inchesToMeters(258.0), Units.inchesToMeters(-4.0)),
-				new Translation2d(Units.inchesToMeters(235.0), Units.inchesToMeters(-6.0)),
-				new Translation2d(Units.inchesToMeters(206.0), Units.inchesToMeters(-7.0)),
+				new Translation2d(Units.inchesToMeters(220.0), Units.inchesToMeters(11.5)),
+				new Translation2d(Units.inchesToMeters(223.5), Units.inchesToMeters(39.0)),
+				new Translation2d(Units.inchesToMeters(206.0), Units.inchesToMeters(56.5)),
+				new Translation2d(Units.inchesToMeters(183.5), Units.inchesToMeters(55.0)),
+				new Translation2d(Units.inchesToMeters(169.0), Units.inchesToMeters(40.0)),
+				new Translation2d(Units.inchesToMeters(170.0), Units.inchesToMeters(18.0)),
+				//new Translation2d(Units.inchesToMeters(175.0), Units.inchesToMeters(8.0)),
+				new Translation2d(Units.inchesToMeters(189.0), Units.inchesToMeters(-9.0)),
+				new Translation2d(Units.inchesToMeters(208.0), Units.inchesToMeters(-30.0)),
+				new Translation2d(Units.inchesToMeters(226.0), Units.inchesToMeters(-46.5)),
+				new Translation2d(Units.inchesToMeters(250.0), Units.inchesToMeters(-60.0)),
+				new Translation2d(Units.inchesToMeters(291.5), Units.inchesToMeters(-51.0)),
+				new Translation2d(Units.inchesToMeters(290.0), Units.inchesToMeters(-20.0)),
+				new Translation2d(Units.inchesToMeters(273.0), Units.inchesToMeters(-3.0)),
+				//new Translation2d(Units.inchesToMeters(244.0), Units.inchesToMeters(0.0)),
+				new Translation2d(Units.inchesToMeters(233.0), Units.inchesToMeters(-6.0)),
+				new Translation2d(Units.inchesToMeters(202.0), Units.inchesToMeters(-9.0)),
 				new Translation2d(Units.inchesToMeters(176.0), Units.inchesToMeters(4.0)),
 				new Translation2d(Units.inchesToMeters(149.0), Units.inchesToMeters(14.0)),
 				new Translation2d(Units.inchesToMeters(96.0), Units.inchesToMeters(18.0)),
-				new Translation2d(Units.inchesToMeters(53.0), Units.inchesToMeters(10.0))
-				),
+				new Translation2d(Units.inchesToMeters(53.0), Units.inchesToMeters(10.0))),
 				// End 3 meters straight ahead of where we started, facing forward
 				new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(0.0), new Rotation2d(180)),
 				// Pass config
@@ -465,6 +480,55 @@ public class Chassis extends SubsystemBase {
 				new Pose2d(Units.inchesToMeters(0.0), Units.inchesToMeters(67.0), new Rotation2d(180)),
 				// Pass config
 				configReversed);
+
+		String BouncePathAllJSON = "path/BouncePathAll.wpilib.json";
+		Path trajectoryPath = null;
+		bouncePathPathWeaver = new Trajectory();
+		try {
+  			trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(BouncePathAllJSON);
+  			bouncePathPathWeaver = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+		} catch (IOException ex) {
+			DriverStation.reportWarning("Path to file: "+trajectoryPath.toString(), false);
+  		DriverStation.reportError("Unable to open trajectory: " + BouncePathAllJSON, ex.getStackTrace());
+		}
+
+		// String BouncePath1JSON = "BouncePath1.wpilib.json";
+		// bouncePathPathWeaver1 = new Trajectory();
+		// try {
+  	// 	Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(BouncePath1JSON);
+  	// bouncePathPathWeaver1 = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+		// } catch (IOException ex) {
+  	// 	DriverStation.reportError("Unable to open trajectory: " + BouncePath1JSON, ex.getStackTrace());
+		// }
+
+		// String BouncePath2JSON = "BouncePath2.path.wpilib.json";
+		// bouncePathPathWeaver2 = new Trajectory();
+		// try {
+  	// 	Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(BouncePath2JSON);
+  	// bouncePathPathWeaver2 = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+		// } catch (IOException ex) {
+  	// 	DriverStation.reportError("Unable to open trajectory: " + BouncePath2JSON, ex.getStackTrace());
+		// }
+
+		// String BouncePath3JSON = "BouncePath3.wpilib.json";
+		// bouncePathPathWeaver3 = new Trajectory();
+		// try {
+  	// 	Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(BouncePath3JSON);
+  	// bouncePathPathWeaver3 = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+		// } catch (IOException ex) {
+  	// 	DriverStation.reportError("Unable to open trajectory: " + BouncePath3JSON, ex.getStackTrace());
+		// }
+
+		// String BouncePath4JSON = "BouncePath4.wpilib.json";
+		// bouncePathPathWeaver4 = new Trajectory();
+		// try {
+  	// 	Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(BouncePath4JSON);
+  	// bouncePathPathWeaver4 = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+		// } catch (IOException ex) {
+  	// 	DriverStation.reportError("Unable to open trajectory: " + BouncePath4JSON, ex.getStackTrace());
+	//	}
+
+
 		// m_leftPIDController.setP(ChassisConstants.kP);
 		// m_leftPIDController.setI(ChassisConstants.kI);
 		// m_leftPIDController.setD(ChassisConstants.kD);

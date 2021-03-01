@@ -245,13 +245,14 @@ public class RobotContainer {
 		// JoystickButton(m_operator, Button.kStart.value))
 		// .whileActiveOnce(new HopperLoad(hopper, true));
 
-		//new JoystickButton(m_operator, Button.kY.value).whenPressed(new HopperLoad(hopper, false));
+		// new JoystickButton(m_operator, Button.kY.value).whenPressed(new HopperLoad(hopper, false));
 		//new JoystickButton(m_operator, Button.kB.value).whenPressed(new HopperReverse(hopper));
 		// new JoystickButton(m_operator, Button.kB.value).whenPressed(new AutonDriveBarrelRace(chassis));
 		new JoystickButton(m_operator, Button.kY.value).whenPressed(new AutonDriveBouncePath(chassis));
 		new JoystickButton(m_operator, Button.kX.value).whenPressed(new AutonDriveTrajectory(chassis.barrelRace1, chassis));
-		new JoystickButton(m_operator, Button.kB.value).whenPressed(new AutonDriveTrajectory(chassis.out, chassis));
+		// new JoystickButton(m_operator, Button.kB.value).whenPressed(new AutonDriveTrajectory(chassis.out, chassis));
 		new JoystickButton(m_operator, Button.kA.value).whenPressed(new AutonDriveTrajectory(chassis.slalom, chassis));
+		new JoystickButton(m_operator, Button.kB.value).whenPressed(new AutonDriveTrajectory(chassis.bouncePathPathWeaver, chassis));
 		// new JoystickButton(m_operator, Button.kB.value).whenPressed(new
 		// HopperShoot(hopper, shooter));
 

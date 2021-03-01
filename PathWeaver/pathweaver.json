@@ -1,0 +1,9 @@
+{
+  "lengthUnit": "Meter",
+  "exportUnit": "Always Meters",
+  "maxVelocity": 0.01,
+  "maxAcceleration": 0.01,
+  "wheelBase": 0.762,
+  "gameName": "Bounce Path",
+  "outputDir": "../../../FRC4453_2021_PROJ/FRC2021/src/main/deploy"
+}

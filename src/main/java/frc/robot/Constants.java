@@ -89,7 +89,7 @@ public final class Constants {
 	}
 
 	public static final class ChassisConstants {
-		public static final double kMaxSpeedMPS = Units.feetToMeters(1.0); // meters per second
+		public static final double kMaxSpeedMPS = Units.feetToMeters(3.0); // meters per second
 		public static final double kMinSpeedMPS = -kMaxSpeedMPS; // meters per second
 		public static final double kMaxAngularSpeed = 2 * Math.PI; // one rotation per second
 
@@ -101,7 +101,7 @@ public final class Constants {
 		public static final double kVelFactor = kWheelCirc / kGearBoxRatio / 60.0; // Meters per Second
 
 		// Constants for Drive PIDs
-		public static final double kP = 0.75;
+		public static final double kP = 0.5;
 		public static final double kI = 0.0005;
 		public static final double kD = 0.0;
 
@@ -274,6 +274,9 @@ public final class Constants {
 
 		public static final double kCollectRPMs = 200.0;
 		public static final double kRejectRPMs = -200.0;
+
+		public static final int kLeftServo = 8;
+		public static final int kRightServo =9;
 	}
 
 	public static final class CollectArmConstants {
